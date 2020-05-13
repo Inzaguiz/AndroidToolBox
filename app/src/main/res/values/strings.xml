@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">AndroidToolBox</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="image_isen">logo_isen</string>
+    <string name="login_connexion">Connexion</string>
+    <string name="login_id">Identifiant</string>
+    <string name="login_password">Mot de passe</string>
+    <string name="login_id_hint">example@abc.fr</string>
+    <string name="login_password_hint">wJ36CpAwPoFt</string>
+    <string name="login_validate">VALIDER</string>
+    <string name="home_welcome">Bonjour</string>
+    <string name="home_life_cycle">Cycle de vie</string>
+    <string name="home_save">Sauvegarde</string>
+    <string name="home_permissions">Permissions</string>
+    <string name="home_webservices">Webservices</string>
+
+</resources>
