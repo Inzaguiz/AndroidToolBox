@@ -9,6 +9,7 @@
         android:id="@+id/logs_frag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:autofillHints=""
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine" />

@@ -19,14 +19,22 @@
     <string name="login_id_hint">example@abc.fr</string>
     <string name="login_password_hint">wJ36CpAwPoFt</string>
     <string name="login_validate">VALIDER</string>
-    <string name="login_admin_id">Admin</string>
-    <string name="login_admin_password">123</string>
 
     <string name="home_welcome">Bonjour</string>
     <string name="home_life_cycle">Cycle de vie</string>
     <string name="home_save">Sauvegarde</string>
     <string name="home_permissions">Permissions</string>
     <string name="home_webservices">Webservices</string>
+    <string name="home_logout">SE DÉCONNETER</string>
+    <string name="home_profile">PROFIL</string>
+
+    <string name="save_name">Nom</string>
+    <string name="save_surname">Prénom</string>
+    <string name="save_date">Date de naissance</string>
+    <string name="save_submit">ENVOYER</string>
+
+    <string name="profile_title">Profil</string>
+    <string name="profile_close">Fermer</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
