@@ -4,10 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_home.*
-import java.io.BufferedReader
-import java.io.File
 
 class HomeActivity : AppCompatActivity() {
 
@@ -26,10 +23,15 @@ class HomeActivity : AppCompatActivity() {
         save_button.setOnClickListener{
             startActivity(Intent(this@HomeActivity, SaveActivity::class.java))
         }
+        permissions_button.setOnClickListener{
+            startActivity(Intent(this@HomeActivity, PermissionsActivity::class.java))
+        }
+
         logout.setOnClickListener{
             flushPrefs()
             startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
         }
+
         profile.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
             intent.putExtra("popuptitle", "Error")

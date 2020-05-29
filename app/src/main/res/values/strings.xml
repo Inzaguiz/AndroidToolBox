@@ -36,6 +36,12 @@
     <string name="profile_title">Profil</string>
     <string name="profile_close">Fermer</string>
 
+
+    <string name="permissions_title">Accès aux informations Android</string>
+    <string name="permissions_Latitude">Latitude : </string>
+    <string name="permissions_Longitude">Longitude : </string>
+    <string name="permissions_image">Votre image</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
