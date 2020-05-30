@@ -34,10 +34,6 @@ class HomeActivity : AppCompatActivity() {
 
         profile.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
-            intent.putExtra("popuptitle", "Error")
-            intent.putExtra("popuptext", "Sorry, that email address is already used!")
-            intent.putExtra("popupbtn", "OK")
-            intent.putExtra("darkstatusbar", false)
             startActivity(intent)
         }
     }
