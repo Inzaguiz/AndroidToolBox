@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/details_background"
+    android:id="@+id/popup_window_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
@@ -45,7 +45,7 @@
                 android:minHeight="170dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/details_text"
+                    android:id="@+id/popup_window_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
@@ -57,13 +57,13 @@
                     android:textColor="#FFFFFF"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/details_button"
+                    app:layout_constraintBottom_toTopOf="@+id/popup_window_button"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/details_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/popup_window_title" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/details_title"
+                    android:id="@+id/popup_window_title"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:background="@color/colorPrimary"
@@ -80,7 +80,7 @@
 
 
                 <Button
-                    android:id="@+id/details_button"
+                    android:id="@+id/popup_window_button"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"

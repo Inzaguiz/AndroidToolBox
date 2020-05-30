@@ -12,7 +12,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.DecelerateInterpolator
-import android.widget.Toast
 import androidx.core.graphics.ColorUtils
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_profile.*
@@ -30,7 +29,7 @@ class ProfileActivity : AppCompatActivity() {
         overridePendingTransition(0, 0)
         setContentView(R.layout.activity_profile)
 
-        details_text.text = readProfile("/details.json")
+        popup_window_text.text = readProfile("/details.json")
 
         if (Build.VERSION.SDK_INT in 19..20) {
             setWindowFlag(this, true)
@@ -56,7 +55,7 @@ class ProfileActivity : AppCompatActivity() {
         val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), Color.TRANSPARENT, alphaColor)
         colorAnimation.duration = 500 // milliseconds
         colorAnimation.addUpdateListener { animator ->
-            details_background.setBackgroundColor(animator.animatedValue as Int)
+            popup_window_background.setBackgroundColor(animator.animatedValue as Int)
         }
         colorAnimation.start()
 
@@ -65,7 +64,7 @@ class ProfileActivity : AppCompatActivity() {
             DecelerateInterpolator()
         ).start()
 
-        details_button.setOnClickListener {
+        popup_window_button.setOnClickListener {
             onBackPressed()
         }
     }
@@ -77,7 +76,7 @@ class ProfileActivity : AppCompatActivity() {
         val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), alphaColor, Color.TRANSPARENT)
         colorAnimation.duration = 500 // milliseconds
         colorAnimation.addUpdateListener { animator ->
-            details_background.setBackgroundColor(
+            popup_window_background.setBackgroundColor(
                 animator.animatedValue as Int
             )
         }
@@ -110,43 +109,33 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun readProfile(file : String): String {
         val gson = Gson()
-        if (File(cacheDir.absolutePath + file).exists()) {
-            val bufferedReader: BufferedReader = File(cacheDir.absolutePath + file).bufferedReader()
-            val inputString = bufferedReader.use { it.readText() }
-            val post = gson.fromJson(inputString, Post::class.java)
-            val currentTime: String = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
+        val bufferedReader: BufferedReader = File(cacheDir.absolutePath + file).bufferedReader()
+        val inputString = bufferedReader.use { it.readText() }
+        val post = gson.fromJson(inputString, Post::class.java)
+        val currentTime: String = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
 
-            val day: String =  "" + currentTime[0] + currentTime[1]
-            val month: String =  "" + currentTime[3] + currentTime[4]
-            val year: String =  "" + currentTime[6] + currentTime[7] + currentTime[8] + currentTime[9]
+        val day: String =  "" + currentTime.get(0) + currentTime.get(1)
+        val month: String =  "" + currentTime.get(3) + currentTime.get(4)
+        val year: String =  "" + currentTime.get(6) + currentTime.get(7) + currentTime.get(8) + currentTime.get(9)
 
-            val bDay = "" + post?.postDate?.get(0) + post?.postDate?.get(1)
-            val bMonth = "" + post?.postDate?.get(3) + post?.postDate?.get(4)
-            val bYear = "" + post?.postDate?.get(6) + post?.postDate?.get(7) + post?.postDate?.get(8) + post?.postDate?.get(9)
+        val bDay = "" + post.postDate.get(0) + post.postDate.get(1)
+        val bMonth = "" + post.postDate.get(3) + post.postDate.get(4)
+        val bYear = "" + post.postDate.get(6) + post.postDate.get(7) + post.postDate.get(8) + post.postDate.get(9)
 
-            val age : Int
-            if (bMonth.toInt() >= month.toInt())
-                if (bDay.toInt() >= day.toInt())
-                    age = year.toInt() - bYear.toInt()
-                else
-                    age = year.toInt() - bYear.toInt() - 1
+        val age : Int
+        if (bMonth.toInt() >= month.toInt())
+            if (bDay.toInt() >= day.toInt())
+                age = year.toInt() - bYear.toInt()
             else
                 age = year.toInt() - bYear.toInt() - 1
+        else
+            age = year.toInt() - bYear.toInt() - 1
 
-            val stringBuilder = StringBuilder()
-            stringBuilder.append("Nom: " + post?.postName)
-            stringBuilder.append("\nPrénom: " + post?.postSurname)
-            stringBuilder.append("\nAge: " + age.toString() + " ans")
+        val stringBuilder = StringBuilder()
+        stringBuilder.append("Nom: " + post.postName)
+        stringBuilder.append("\nPrénom: " + post.postSurname)
+        stringBuilder.append("\nAge: " + age.toString() + " ans")
 
-            return stringBuilder.toString()
-        }
-        else{
-            toast("No info saved yet")
-            return "Please save your information"
-        }
-    }
-
-    private fun toast(str: String) {
-        Toast.makeText(applicationContext, str, Toast.LENGTH_LONG).show()
+        return stringBuilder.toString()
     }
 }
