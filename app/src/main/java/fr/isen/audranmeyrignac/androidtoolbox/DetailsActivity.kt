@@ -12,25 +12,24 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.DecelerateInterpolator
-import android.widget.Toast
 import androidx.core.graphics.ColorUtils
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.activity_details.*
 import java.io.BufferedReader
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ProfileActivity : AppCompatActivity() {
+class DetailsActivity : AppCompatActivity() {
 
     private var darkStatusBar = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(0, 0)
-        setContentView(R.layout.activity_profile)
+        setContentView(R.layout.activity_details)
 
-        details_text.text = readProfile("/details.json")
+        details_text.text = readDetails()
 
         if (Build.VERSION.SDK_INT in 19..20) {
             setWindowFlag(this, true)
@@ -108,45 +107,23 @@ class ProfileActivity : AppCompatActivity() {
         win.attributes = winParams
     }
 
-    private fun readProfile(file : String): String {
-        val gson = Gson()
-        if (File(cacheDir.absolutePath + file).exists()) {
-            val bufferedReader: BufferedReader = File(cacheDir.absolutePath + file).bufferedReader()
-            val inputString = bufferedReader.use { it.readText() }
-            val post = gson.fromJson(inputString, Post::class.java)
-            val currentTime: String = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
+    private fun readDetails(): String {
+        val stringBuilder = StringBuilder()
+        stringBuilder.append("Nom: " + intent.getStringExtra("Username"))
+        stringBuilder.append("\nGender: " + intent.getStringExtra("Gender"))
+        stringBuilder.append("\nAge: " + intent.getStringExtra("Age"))
+        stringBuilder.append("\nBirthday: " + intent.getStringExtra("Dob"))
 
-            val day: String =  "" + currentTime[0] + currentTime[1]
-            val month: String =  "" + currentTime[3] + currentTime[4]
-            val year: String =  "" + currentTime[6] + currentTime[7] + currentTime[8] + currentTime[9]
+        stringBuilder.append("\n\nMail: " + intent.getStringExtra("Mail"))
+        stringBuilder.append("\nCell: " + intent.getStringExtra("Cell"))
+        stringBuilder.append("\nPhone: " + intent.getStringExtra("Phone"))
 
-            val bDay = "" + post?.postDate?.get(0) + post?.postDate?.get(1)
-            val bMonth = "" + post?.postDate?.get(3) + post?.postDate?.get(4)
-            val bYear = "" + post?.postDate?.get(6) + post?.postDate?.get(7) + post?.postDate?.get(8) + post?.postDate?.get(9)
+        stringBuilder.append("\n\nAdresse: " + intent.getStringExtra("Address"))
+        stringBuilder.append("\n" + intent.getStringExtra("Coordinate"))
+        stringBuilder.append("\nTimezone: " + intent.getStringExtra("Timezone"))
 
-            val age : Int
-            if (bMonth.toInt() >= month.toInt())
-                if (bDay.toInt() >= day.toInt())
-                    age = year.toInt() - bYear.toInt()
-                else
-                    age = year.toInt() - bYear.toInt() - 1
-            else
-                age = year.toInt() - bYear.toInt() - 1
-
-            val stringBuilder = StringBuilder()
-            stringBuilder.append("Nom: " + post?.postName)
-            stringBuilder.append("\nPrénom: " + post?.postSurname)
-            stringBuilder.append("\nAge: " + age.toString() + " ans")
-
-            return stringBuilder.toString()
-        }
-        else{
-            toast("No info saved yet")
-            return "Please save your information"
-        }
-    }
-
-    private fun toast(str: String) {
-        Toast.makeText(applicationContext, str, Toast.LENGTH_LONG).show()
+        stringBuilder.append("\n\nNat: " + intent.getStringExtra("Nat"))
+        stringBuilder.append("\nRegistration: " + intent.getStringExtra("Registration"))
+        return stringBuilder.toString()
     }
 }
