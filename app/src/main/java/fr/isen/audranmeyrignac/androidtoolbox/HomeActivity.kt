@@ -18,7 +18,7 @@ class HomeActivity : AppCompatActivity() {
         prefs = this.getSharedPreferences(PREFS_FILENAME, 0)
 
         lifecycle_button.setOnClickListener {
-            startActivity(Intent(this@HomeActivity, LifeCyleActivity::class.java))
+            startActivity(Intent(this@HomeActivity, LifeCycleActivity::class.java))
         }
         save_button.setOnClickListener{
             startActivity(Intent(this@HomeActivity, SaveActivity::class.java))
@@ -27,7 +27,7 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this@HomeActivity, PermissionsActivity::class.java))
         }
         webservices_button.setOnClickListener{
-            val intent = Intent(this@HomeActivity, WebservicesActivity::class.java)
+            val intent = Intent(this@HomeActivity, WebServicesActivity::class.java)
             startActivity(intent)
         }
         logout.setOnClickListener{

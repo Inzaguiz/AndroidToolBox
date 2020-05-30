@@ -16,16 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OutpuAPI"></activity>
-        <activity android:name=".WebServicesActivity" />
-        <activity android:name=".RecycleViewAdapter" />
+        <activity android:name=".WebServicesActivity"/>
         <activity android:name=".DetailsActivity" />
-        <activity android:name=".PermissionsActivity" />
-        <activity android:name=".WebservicesActivity" />
         <activity android:name=".PermissionsActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".SaveActivity" />
-        <activity android:name=".LifeCyleActivity" />
+        <activity android:name=".LifeCycleActivity" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"

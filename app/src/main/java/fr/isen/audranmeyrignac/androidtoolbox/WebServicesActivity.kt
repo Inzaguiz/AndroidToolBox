@@ -15,14 +15,13 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_web_services.*
 
-class WebservicesActivity : AppCompatActivity() {
+class WebServicesActivity : AppCompatActivity() {
 
     private val permissionInternet = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_services)
-        internetRequest() //Ask the permission to use Internet, otherwise it doesn't work
         makeRequest()
     }
 
@@ -67,28 +66,6 @@ class WebservicesActivity : AppCompatActivity() {
             Response.ErrorListener { Toast.makeText(this, "Couldn't Load contact list", Toast.LENGTH_LONG).show()})
         queue.add(stringRequest)
     }
-
-    private fun internetRequest() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.INTERNET), permissionInternet)
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        when (requestCode) {
-            permissionInternet -> {
-                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-
-                }
-                else if (grantResults.isNotEmpty()){
-                    permissionDenied()
-                }
-                return
-            }
-        }
-        return
-    }
-
     private fun permissionDenied() {
         Toast.makeText(this, "Aucune connexion", Toast.LENGTH_LONG).show()
         finish()
