@@ -26,14 +26,17 @@ class HomeActivity : AppCompatActivity() {
         permissions_button.setOnClickListener{
             startActivity(Intent(this@HomeActivity, PermissionsActivity::class.java))
         }
-
+        webservices_button.setOnClickListener{
+            val intent = Intent(this@HomeActivity, WebservicesActivity::class.java)
+            startActivity(intent)
+        }
         logout.setOnClickListener{
             flushPrefs()
             startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
         }
 
         profile.setOnClickListener{
-            val intent = Intent(this, ProfileActivity::class.java)
+            val intent = Intent(this@HomeActivity, ProfileActivity::class.java)
             startActivity(intent)
         }
     }
